@@ -1,0 +1,9 @@
+name = "kenya-quest-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[observability]
+enabled = true
+
+# Set ALLOWED_ORIGINS as a comma-separated variable for direct cross-origin consumers.
+# The client service binding uses the same origin and needs no CORS setting.
