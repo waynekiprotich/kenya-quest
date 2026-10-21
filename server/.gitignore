@@ -1,0 +1,12 @@
+__pycache__/
+.venv/
+.env
+.DS_Store
+.claude/
+
+# worker/ (Cloudflare Worker, Node/TypeScript)
+worker/node_modules/
+worker/.wrangler/
+worker/dist/
+worker/.dev.vars
+worker/*.tsbuildinfo
