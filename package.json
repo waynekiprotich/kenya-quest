@@ -1,0 +1,20 @@
+{
+  "name": "kenya-quest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "npm --prefix client ci && npm --prefix server/worker ci",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix server/worker run build && npm --prefix client run build",
+    "test": "npm --prefix client test && npm --prefix server/worker test",
+    "check": "npm test && npm run build",
+    "format": "prettier --write \"client/src/**/*.{js,jsx,css}\" \"client/worker/*.js\" \"client/tests/*.js\" \"server/worker/src/*.ts\" \"server/worker/tests/*.mjs\" \"scripts/*.mjs\"",
+    "format:check": "prettier --check \"client/src/**/*.{js,jsx,css}\" \"client/worker/*.js\" \"client/tests/*.js\" \"server/worker/src/*.ts\" \"server/worker/tests/*.mjs\" \"scripts/*.mjs\""
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.8"
+  }
+}
