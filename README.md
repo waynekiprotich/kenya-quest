@@ -1,5 +1,8 @@
 # Kenya Quest
 
+[![CI](https://github.com/waynekiprotich/kenya-quest/actions/workflows/ci.yml/badge.svg)](https://github.com/waynekiprotich/kenya-quest/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A Nairobi discovery app: choose a quest, visit real places, complete five tasks, and keep progress on your device.
 
 ## Development
@@ -19,7 +22,7 @@ npm run check     # progress/proxy/API tests, typecheck, backend and frontend bu
 npm run format    # consistent formatting for JS, TS, JSX and CSS
 ```
 
-The `client/` and `server/` directories are independent Git repositories. Root orchestration and documentation live outside those repositories; include them separately when sharing the complete workspace.
+The workspace is structured as a monorepo containing the `client/` frontend application, `server/worker/` TypeScript Cloudflare Worker API, and `server/` FastAPI fallback backend.
 
 ## Architecture
 
