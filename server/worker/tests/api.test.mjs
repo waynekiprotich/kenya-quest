@@ -119,3 +119,10 @@ test('quest detail lists places in route order and every item has a photo', asyn
 test('malformed path segments are rejected cleanly', async () => {
   assert.equal((await request('/quests/%E0%A4%A')).status, 400)
 })
+test('deals endpoint returns all items and filters by location correctly', async () => {
+  const allDeals = await (await request('/deals')).json()
+  assert.ok(Array.isArray(allDeals))
+  assert.ok(allDeals.length > 0)
+  const filtered = await (await request('/deals?location=non-existent')).json()
+  assert.deepEqual(filtered, [])
+})
