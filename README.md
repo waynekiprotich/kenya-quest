@@ -102,3 +102,11 @@ In another terminal, start the client with `API_PROXY_TARGET=http://127.0.0.1:80
 ## Progress
 
 `kenya-quest:progress` stores `{ [questId]: [taskId, ...] }` in localStorage. Data is sanitized, stale task IDs do not count toward completion, updates synchronize across tabs, and blocked storage falls back to memory for the current page session. There is no account, database, booking or payment flow.
+
+## Documentation
+
+- [Architecture & System Design](docs/ARCHITECTURE.md): Component topology, edge routing, and data flows.
+- [OpenAPI Specification](docs/openapi.yaml): Machine-readable REST API contract and schemas.
+- [Contributing Guide](CONTRIBUTING.md): Development environment setup and commit conventions.
+- [Security Policy](SECURITY.md): Responsible disclosure and supported versions.
+
