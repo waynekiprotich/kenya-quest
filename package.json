@@ -1,7 +1,24 @@
 {
   "name": "kenya-quest",
+  "version": "0.1.0",
+  "description": "Nairobi city discovery web app featuring 3D particle landmarks, quests, and local exploration",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waynekiprotich/kenya-quest.git"
+  },
+  "keywords": [
+    "nairobi",
+    "kenya",
+    "quests",
+    "discovery",
+    "threejs",
+    "react",
+    "cloudflare-workers"
+  ],
+  "author": "Wayne Kiprotich",
+  "license": "MIT",
   "scripts": {
     "setup": "npm --prefix client ci && npm --prefix server/worker ci",
     "dev": "node scripts/dev.mjs",
