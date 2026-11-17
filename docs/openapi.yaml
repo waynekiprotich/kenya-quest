@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Kenya Quest API
+  description: REST API for Kenya Quest Nairobi discovery catalog, search, and details.
+  version: 0.1.0
+servers:
+  - url: http://localhost:8787/api
+    description: Local development Cloudflare Worker
+  - url: https://kenya-quest-server.onrender.com/api
+    description: Production API server
+paths:
+  /discover:
+    get:
+      summary: Retrieve aggregated discovery payload
+      responses:
+        '200':
+          description: Aggregated featured quests, locations, and categories
+  /categories:
+    get:
+      summary: List all categories
+      responses:
+        '200':
+          description: List of category objects with venue counts
+  /quests:
+    get:
+      summary: Filter and list quests
+      parameters:
+        - name: location
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of matching quests
+  /quests/{id}:
+    get:
+      summary: Get quest details by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed quest object with stops and tasks
+        '404':
+          description: Quest not found
+  /places:
+    get:
+      summary: Filter and list places
+      parameters:
+        - name: location
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of matching places
+  /places/{id}:
+    get:
+      summary: Get place details by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed place object
+        '404':
+          description: Place not found
+  /locations:
+    get:
+      summary: List all locations and neighbourhoods
+      responses:
+        '200':
+          description: Array of location objects
+  /locations/{id}:
+    get:
+      summary: Get location details by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Location details
+        '404':
+          description: Location not found
+  /deals:
+    get:
+      summary: List promotional deals
+      parameters:
+        - name: location
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of promotional deals
+  /search:
+    get:
+      summary: Full-text search across catalog
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            maxLength: 200
+      responses:
+        '200':
+          description: Ranked search results
+        '400':
+          description: Query exceeds character limits
+  /health:
+    get:
+      summary: Service health check
+      responses:
+        '200':
+          description: Service is healthy
