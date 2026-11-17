@@ -2,6 +2,7 @@
   "name": "kenya-quest-worker",
   "private": true,
   "version": "0.1.0",
+  "description": "Cloudflare Workers edge API for Kenya Quest: indexed catalog, search, and validation",
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
@@ -11,6 +12,16 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "deploy:check": "npm test && wrangler deploy --dry-run"
   },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "edge",
+    "typescript",
+    "api",
+    "rest"
+  ],
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260918.1",
     "esbuild": "^0.28.2",
