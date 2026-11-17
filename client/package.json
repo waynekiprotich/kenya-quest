@@ -2,6 +2,7 @@
   "name": "kenya-quest-client",
   "private": true,
   "version": "0.1.0",
+  "description": "Frontend single-page web app for Kenya Quest built with React 19, Vite, Three.js, GSAP, and Leaflet",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +12,17 @@
     "test": "node --test tests/*.test.js",
     "deploy:check": "npm run build && wrangler deploy --dry-run"
   },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "keywords": [
+    "react",
+    "threejs",
+    "gsap",
+    "leaflet",
+    "vite",
+    "motion"
+  ],
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
     "@fontsource/instrument-serif": "^5.3.0",
