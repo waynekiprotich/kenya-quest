@@ -1,3 +1,8 @@
+/**
+ * Root development script orchestrating concurrent processes for:
+ * 1. Cloudflare Workers API backend (server/worker on port 8787)
+ * 2. Vite React frontend client (client on port 5173)
+ */
 import { spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('../', import.meta.url))
@@ -10,6 +15,11 @@ const children = ['server/worker', 'client'].map((directory) =>
   }),
 )
 let stopping = false
+
+/**
+ * Cleanly terminates all spawned child process groups on exit or termination signal.
+ * @param {number} code - Exit status code
+ */
 function stop(code = 0) {
   if (stopping) return
   stopping = true
