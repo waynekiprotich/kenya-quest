@@ -1,8 +1,10 @@
+/** A single checkpoint task within an exploration quest */
 export interface QuestTask {
   id: string
   label: string
 }
 
+/** Complete quest definition with geo-coordinates, stops, and checkpoints */
 export interface Quest {
   id: string
   title: string
@@ -20,6 +22,7 @@ export interface Quest {
   nearbyPlaces: string[]
 }
 
+/** Curated place or venue with metadata and linked quests */
 export interface Place {
   id: string
   name: string
@@ -36,6 +39,7 @@ export interface Place {
   relatedQuests: string[]
 }
 
+/** Venue promotion or special deal linked to a place */
 export interface Deal {
   id: string
   title: string
@@ -44,6 +48,7 @@ export interface Deal {
   priceRange: string
 }
 
+/** Distinct neighbourhood or area in Nairobi */
 export interface Location {
   id: string
   name: string
@@ -54,6 +59,7 @@ export interface Location {
   image: string
 }
 
+/** Cloudflare Worker environment bindings */
 export interface Env {
   ALLOWED_ORIGINS?: string
 }
