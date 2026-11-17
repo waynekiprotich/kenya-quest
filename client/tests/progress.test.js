@@ -14,6 +14,8 @@ test('invalid stored data is normalized and repeated task IDs are removed', () =
 test('completion counts only tasks that still belong to the quest', () => {
   assert.equal(countCompletedTasks({ tasks: [{ id: 'new' }] }, ['old', 'old']), 0)
   assert.equal(countCompletedTasks({ tasks: [{ id: 'new' }] }, ['new', 'new']), 1)
+  assert.equal(countCompletedTasks({ tasks: [] }, ['any']), 0)
+  assert.equal(countCompletedTasks({ tasks: [{ id: 'a' }] }, null), 0)
 })
 test('unavailable storage preserves progress across subscriptions', () => {
   const store = createProgressStore({
