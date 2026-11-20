@@ -29,6 +29,14 @@ test('each field reports its own problem', () => {
   assert.deepEqual(Object.keys(errors).sort(), ['budget', 'email', 'idea', 'name'])
 })
 
+test('whitespace-only fields are rejected as missing', () => {
+  const errors = validateIdea({ name: '   ', email: '   ', idea: '   ', budget: '   ' })
+  assert.equal(Boolean(errors.name), true)
+  assert.equal(Boolean(errors.email), true)
+  assert.equal(Boolean(errors.idea), true)
+  assert.equal(Boolean(errors.budget), true)
+})
+
 test('ideas over the limit are rejected', () => {
   assert.ok(validateIdea({ ...valid, idea: 'x'.repeat(1300) }).idea)
 })
