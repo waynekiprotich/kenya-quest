@@ -107,6 +107,9 @@ In another terminal, start the client with `API_PROXY_TARGET=http://127.0.0.1:80
 
 - [Architecture & System Design](docs/ARCHITECTURE.md): Component topology, edge routing, and data flows.
 - [OpenAPI Specification](docs/openapi.yaml): Machine-readable REST API contract and schemas.
+- [Nairobi Neighbourhoods Guide](docs/LOCATIONS.md): Covered districts, transit, and atmosphere.
+- [Quest Curation Guidelines](docs/QUEST_CURATION.md): Curation framework and checkpoint sequencing.
+- [Performance & Optimization](docs/PERFORMANCE.md): Single-canvas WebGL strategy and edge asset caching.
 - [Contributing Guide](CONTRIBUTING.md): Development environment setup and commit conventions.
 - [Security Policy](SECURITY.md): Responsible disclosure and supported versions.
 
