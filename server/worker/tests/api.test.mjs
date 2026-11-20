@@ -126,3 +126,14 @@ test('deals endpoint returns all items and filters by location correctly', async
   const filtered = await (await request('/deals?location=non-existent')).json()
   assert.deepEqual(filtered, [])
 })
+test('categories endpoint returns valid schema and positive counts', async () => {
+  const categories = await (await request('/categories')).json()
+  assert.ok(Array.isArray(categories))
+  assert.ok(categories.length > 0)
+  for (const cat of categories) {
+    assert.equal(typeof cat.name, 'string')
+    assert.ok(cat.name.length > 0)
+    assert.equal(typeof cat.questCount, 'number')
+    assert.ok(cat.questCount >= 0)
+  }
+})
