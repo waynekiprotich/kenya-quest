@@ -34,6 +34,7 @@ const locationById = new Map(LOCATIONS.map((location) => [location.id, location]
 
 const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase()
 
+/** Filter quests by optional location and category */
 export function filterQuests(location: string | null, category: string | null) {
   return quests.filter(
     (quest) =>
@@ -42,16 +43,19 @@ export function filterQuests(location: string | null, category: string | null) {
   )
 }
 
+/** Filter places by optional location and venue type */
 export function filterPlaces(location: string | null, type: string | null) {
   return places.filter(
     (place) => (!location || place.location === location) && (!type || same(place.type, type)),
   )
 }
 
+/** Filter deals by optional location */
 export function filterDeals(location: string | null) {
   return location ? deals.filter((deal) => deal.location === location) : deals
 }
 
+/** Retrieve quest detail with route-sequenced stops and associated deals */
 export function questDetail(id: string) {
   const quest = questById.get(id)
   if (!quest) return undefined
@@ -64,6 +68,7 @@ export function questDetail(id: string) {
   }
 }
 
+/** Retrieve place detail with linked quests and deals */
 export function placeDetail(id: string) {
   const place = placeById.get(id)
   if (!place) return undefined
@@ -74,6 +79,7 @@ export function placeDetail(id: string) {
   }
 }
 
+/** Retrieve location detail with related quests, venues, and deals */
 export function locationDetail(id: string) {
   const location = locationById.get(id)
   if (!location) return undefined
