@@ -1,3 +1,4 @@
+/** Custom HTTP error carrying status code, human-readable detail, and optional response headers */
 export class HttpError extends Error {
   constructor(
     readonly status: number,
@@ -26,12 +27,17 @@ function matches(header: string | null, tag: string): boolean {
   return header.split(',').some((value) => value.trim().replace(/^W\//, '') === tag.slice(2))
 }
 
+/** Options for JSON HTTP response construction */
 interface JsonOptions {
   status?: number
   cache?: boolean
   headers?: Record<string, string>
 }
 
+/**
+ * Creates a JSON HTTP Response with automatic ETag generation, conditional 304 handling,
+ * and security headers.
+ */
 export function json(data: unknown, request: Request, options: JsonOptions = {}): Response {
   const { status = 200, headers = {} } = options
   const cache = options.cache ?? status < 400
