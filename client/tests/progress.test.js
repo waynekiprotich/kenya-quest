@@ -62,3 +62,19 @@ test('writes, resets and cross-tab changes notify subscribers', () => {
   assert.equal(changes, 3)
   unsubscribe()
 })
+
+test('multiple subscribers are all notified independently on store mutation', () => {
+  let callCountA = 0
+  let callCountB = 0
+  const store = createProgressStore({ getItem: () => '{}', setItem: () => {} })
+  const unsubA = store.subscribe(() => callCountA++)
+  const unsubB = store.subscribe(() => callCountB++)
+  store.toggle('test-quest', 'task-1')
+  assert.equal(callCountA, 1)
+  assert.equal(callCountB, 1)
+  unsubA()
+  store.toggle('test-quest', 'task-2')
+  assert.equal(callCountA, 1)
+  assert.equal(callCountB, 2)
+  unsubB()
+})
