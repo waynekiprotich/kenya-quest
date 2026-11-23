@@ -110,6 +110,7 @@ In another terminal, start the client with `API_PROXY_TARGET=http://127.0.0.1:80
 - [Nairobi Neighbourhoods Guide](docs/LOCATIONS.md): Covered districts, transit, and atmosphere.
 - [Quest Curation Guidelines](docs/QUEST_CURATION.md): Curation framework and checkpoint sequencing.
 - [Performance & Optimization](docs/PERFORMANCE.md): Single-canvas WebGL strategy and edge asset caching.
+- [Testing Strategy](docs/TESTING.md): Native test runner architecture and test coverage suites.
 - [Contributing Guide](CONTRIBUTING.md): Development environment setup and commit conventions.
 - [Security Policy](SECURITY.md): Responsible disclosure and supported versions.
 
