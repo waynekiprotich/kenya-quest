@@ -19,3 +19,9 @@ Rather than allocating multiple WebGL contexts across sections, the home page us
 ### 4. Edge Asset Caching & Service Bindings
 - Static production bundles include content-hashed filenames cached for 1 year via Cloudflare Pages `_headers`.
 - Browser API requests talk to the Cloudflare Worker backend over in-process Service Bindings, avoiding public TLS/DNS overhead.
+
+### 5. Responsive Image Delivery & Dynamic Resizing
+- **On-Demand CDN Resizing**: Remote photography served via Unsplash utilizes URL-based dimension querying (`?auto=format&fit=crop&w={width}&q=72`), drastically reducing payload sizes.
+- **Tailored Srcset Descriptors**: Components like `AreaList` and `QuestRail` generate targeted `srcset` arrays bounded to viewport breakpoints (`[240, 320, 480, 800, 1200]`), preventing small UI cards from requesting full-resolution hero assets.
+- **Fixed Asset Pass-through**: Non-Unsplash sources (such as Wikimedia Commons previews) bypass dynamic query manipulation and preserve cacheable fixed resolutions.
+
