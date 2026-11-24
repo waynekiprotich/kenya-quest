@@ -5,6 +5,7 @@ export const MAX_QUERY_LENGTH = 200
 
 type Field = [text: string, weight: number]
 
+/** Normalizes text for search indexing by stripping accents/diacritics and converting to lowercase */
 export function normalize(value: string): string {
   return value
     .normalize('NFKD')
@@ -12,12 +13,16 @@ export function normalize(value: string): string {
     .toLowerCase()
 }
 
+/** Splits query string into normalized search tokens, discarding extraneous whitespace */
 export function terms(query: string): string[] {
   return normalize(query).split(/\s+/).filter(Boolean)
 }
 
-// Every term must match some field. Word-start and exact matches outrank substrings,
-// and heavier fields (titles, names) outrank descriptions.
+/**
+ * Scores an item against search tokens. Every term must match at least one field.
+ * Word-boundary matches and exact matches receive double multipliers. Heavier fields
+ * (titles, names) outrank generic body descriptions.
+ */
 export function score(fields: Field[], words: string[]): number {
   let total = 0
   for (const word of words) {
@@ -74,6 +79,9 @@ function rank<T>(entries: Array<{ item: T; fields: Field[] }>, words: string[]):
     .map((entry) => entry.item)
 }
 
+/**
+ * Executes a multi-field ranked search query across quests, places, locations, and categories.
+ */
 export function search(query: string) {
   const words = terms(query)
   if (!words.length) return { query, quests: [], places: [], locations: [], categories: [] }
