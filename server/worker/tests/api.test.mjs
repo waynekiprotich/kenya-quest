@@ -137,3 +137,25 @@ test('categories endpoint returns valid schema and positive counts', async () =>
     assert.ok(cat.questCount >= 0)
   }
 })
+test('health endpoint reports operational status and catalog counts', async () => {
+  const res = await request('/health')
+  assert.equal(res.status, 200)
+  const data = await res.json()
+  assert.equal(data.status, 'ok')
+  assert.equal(typeof data.quests, 'number')
+  assert.equal(typeof data.places, 'number')
+  assert.ok(data.quests > 0)
+  assert.ok(data.places > 0)
+})
+test('location detail aggregates places, quests, and active deals', async () => {
+  const locations = await (await request('/locations')).json()
+  assert.ok(locations.length > 0)
+  const first = locations[0]
+  const detail = await (await request(`/locations/${first.id}`)).json()
+  assert.equal(detail.id, first.id)
+  assert.ok(Array.isArray(detail.quests))
+  assert.ok(Array.isArray(detail.places))
+  assert.ok(Array.isArray(detail.deals))
+  assert.ok(detail.quests.every((q) => q.location === first.id))
+  assert.ok(detail.places.every((p) => p.location === first.id))
+})
